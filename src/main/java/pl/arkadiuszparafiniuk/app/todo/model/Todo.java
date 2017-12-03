@@ -6,6 +6,8 @@ import java.util.Date;
  * Class created by Arkadiusz Parafiniuk
  * arkadiusz.parafiniuk@gmail.com
  */
+@Entity
+@Table(name="Person")
 public class Todo {
 
     private int id;
