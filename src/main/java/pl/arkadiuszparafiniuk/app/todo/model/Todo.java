@@ -1,5 +1,7 @@
 package pl.arkadiuszparafiniuk.app.todo.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -7,13 +9,26 @@ import java.util.Date;
  * arkadiusz.parafiniuk@gmail.com
  */
 @Entity
-@Table(name="Person")
+@Table(name="Todo")
 public class Todo {
 
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
+
+    @Column(name="title")
+    @NotNull
     private String title;
+
+    @Column(name="description")
     private String description;
+
+    @Column(name="creationDate")
+    @NotNull
     private Date creationDate;
+
+    @Column(name="deadline")
     private Date deadline;
 
     public int getId() {
@@ -54,5 +69,16 @@ public class Todo {
 
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
+    }
+
+    @Override
+    public String toString() {
+        return "Todo{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", creationDate=" + creationDate +
+                ", deadline=" + deadline +
+                '}';
     }
 }
