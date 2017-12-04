@@ -31,6 +31,10 @@ public class Todo {
     @Column(name="deadline")
     private Date deadline;
 
+    public Todo(){
+        this.creationDate = new Date();
+    }
+
     public int getId() {
         return id;
     }
