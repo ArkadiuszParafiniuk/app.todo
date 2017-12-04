@@ -1,5 +1,6 @@
 package pl.arkadiuszparafiniuk.app.todo.dao;
 
+import org.springframework.stereotype.Repository;
 import pl.arkadiuszparafiniuk.app.todo.model.Todo;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
  * Class created by Arkadiusz Parafiniuk
  * arkadiusz.parafiniuk@gmail.com
  */
+@Repository
 public class TodoDaoImpl implements TodoDao {
 
     @Override
