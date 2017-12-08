@@ -9,7 +9,7 @@ import java.util.Date;
  * arkadiusz.parafiniuk@gmail.com
  */
 @Entity
-@Table(name="Todo")
+@Table(name="todo")
 public class Todo {
 
     @Id
@@ -30,6 +30,13 @@ public class Todo {
 
     @Column(name="deadline")
     private Date deadline;
+
+    public Todo(String title, String description, Date creationDate, Date deadline) {
+        this.title = title;
+        this.description = description;
+        this.creationDate = creationDate;
+        this.deadline = deadline;
+    }
 
     public Todo(){
         this.creationDate = new Date();

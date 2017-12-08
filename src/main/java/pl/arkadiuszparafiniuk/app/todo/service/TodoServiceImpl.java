@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.arkadiuszparafiniuk.app.todo.dao.TodoDaoImpl;
 import pl.arkadiuszparafiniuk.app.todo.model.Todo;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -13,7 +14,8 @@ import java.util.List;
 @Service
 public class TodoServiceImpl implements TodoService {
 
-    TodoDaoImpl todoDao = new TodoDaoImpl();
+    @Resource
+    TodoDaoImpl todoDao;
 
     @Override
     public void add(Todo todo) {
