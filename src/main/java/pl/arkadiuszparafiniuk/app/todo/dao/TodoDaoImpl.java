@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import pl.arkadiuszparafiniuk.app.todo.model.Todo;
 
+import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,43 +33,47 @@ public class TodoDaoImpl implements TodoDao {
             logger.info("Todo saved successfully, Todo Details="+todo);
         } catch (Exception e) {
             logger.error("Adding todo to database failed.");
-            e.printStackTrace();
         }
     }
 
     @Override
     public void delete(Todo todo) {
         Session session = this.sessionFactory.getCurrentSession();
-        if(null != todo){
+        session.beginTransaction();
+        if(todo != null){
             session.delete(todo);
         }
+        session.getTransaction().commit();
         logger.info("Todo deleted successfully, todo details="+todo);
     }
 
     @Override
     public void update(Todo todo) {
         Session session = this.sessionFactory.getCurrentSession();
+        session.beginTransaction();
         session.update(todo);
+        session.getTransaction().commit();
         logger.info("Todo updated successfully, Todo Details="+todo);
     }
 
     @Override
     public Todo get(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        Todo Todo = (Todo) session.load(Todo.class, new Integer(id));
-        logger.info("Todo loaded successfully, Todo details="+Todo);
-        return Todo;
+        session.beginTransaction();
+        Todo todo = (Todo) session.get(Todo.class, new Integer(id));
+        session.getTransaction().commit();
+        logger.info("Todo loaded successfully, Todo details="+todo);
+        return todo;
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<Todo> getAll() {
-        Session session = this.sessionFactory.getCurrentSession();
-        List<Todo> todoList = session.createQuery("from Todo").list();
-        for(Todo todo : todoList){
-            logger.info("Person List::"+todo);
-        }
-        return todoList;
+            Session session = this.sessionFactory.getCurrentSession();
+            session.beginTransaction();
+            List<Todo> todos = (List<Todo>) session.createQuery("from Todo").list();
+            session.getTransaction().commit();
+            return todos;
     }
 
 }

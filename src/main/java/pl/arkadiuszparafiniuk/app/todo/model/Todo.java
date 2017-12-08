@@ -2,7 +2,7 @@ package pl.arkadiuszparafiniuk.app.todo.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Class created by Arkadiusz Parafiniuk
@@ -14,7 +14,7 @@ public class Todo {
 
     @Id
     @Column(name="id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
     @Column(name="title")
@@ -31,15 +31,15 @@ public class Todo {
     @Column(name="deadline")
     private Date deadline;
 
+    public Todo(){
+        //
+    }
+
     public Todo(String title, String description, Date creationDate, Date deadline) {
         this.title = title;
         this.description = description;
         this.creationDate = creationDate;
         this.deadline = deadline;
-    }
-
-    public Todo(){
-        this.creationDate = new Date();
     }
 
     public int getId() {

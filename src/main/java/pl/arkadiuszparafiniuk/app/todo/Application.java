@@ -13,12 +13,5 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 
-		Todo todo = new Todo();
-		todo.setCreationDate(new java.util.Date());
-		todo.setTitle("test12 todo");
-		todo.setDescription("test desc");
-
-		TodoDaoImpl todoDao = new TodoDaoImpl();
-		todoDao.add(todo);
 	}
 }
