@@ -5,6 +5,7 @@ import pl.arkadiuszparafiniuk.app.todo.dao.TodoDaoImpl;
 import pl.arkadiuszparafiniuk.app.todo.model.Todo;
 
 import javax.annotation.Resource;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public void add(Todo todo) {
+        todo.setCreationDate(new Date(System.currentTimeMillis()));
         todoDao.add(todo);
     }
 
