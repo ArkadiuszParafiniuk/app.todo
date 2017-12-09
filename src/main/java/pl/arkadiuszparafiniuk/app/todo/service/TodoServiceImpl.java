@@ -21,6 +21,9 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public void add(Todo todo) {
         todo.setCreationDate(new Date(System.currentTimeMillis()));
+        if(todo.getTitle() == null){
+            todo.setTitle("Unnamed");
+        }
         todoDao.add(todo);
     }
 
